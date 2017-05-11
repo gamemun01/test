@@ -45,7 +45,7 @@ namespace TestBotAPI.Controllers {
 
                                             actions.Add(new PostbackActon() {
                                                 label = "postback",
-                                                data = " ABC DEF = AAA = 111 & "
+                                                data = "#r"
                                             });
                                             var C = new List<Column>();
                                             C.Add(new Column() {
