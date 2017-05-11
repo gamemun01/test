@@ -59,7 +59,7 @@ namespace TestBotAPI.Controllers {
                                                 actions = actions
                                             });
                                             var carousel = new CarouselTemplate() {
-                                                altText = "กดลงทะเบียนรับการแจ้งเตือนเอกสารธุระกรรมผ่านช่องทางไลน์",
+                                                altText = "กดลงทะเบียนรับการแจ้งเตือนเอกสารธุระกรรมผ่านช่องทางไลน์ ",
                                                 columns = C
                                             };
                                             Utility.PushTemplateMessage(user.userId, carousel, ChannelAccessToken);
