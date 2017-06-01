@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
@@ -25,48 +26,48 @@ namespace TestBotAPI.Controllers {
                         string Message;
                         switch (e.type) {
                             case "follow":
-                                Message = "สวัสดีคุณ" + user.displayName + "\nลงทะเบียนรับการแจ้งเตือนเอกสารธุรกรรมผ่านช่องทางไลน์ พิมพ์ \"#R\"";
+                                Message = "สวัสดีคุณ" + user.displayName;
                                 Utility.ReplyMessage(e.replyToken, Message, ChannelAccessToken);
                                 break;
                             case "message":
                                 switch (e.message.type) {
                                     case "text":
-                                        if (e.message.text.ToLower() == "#r") {
-                                            var actions = new List<TemplateActionBase>();
-                                            actions.Add(new MessageActon() {
-                                                label = "Message",
-                                                text = "Text"
-                                            });
+                                        //if (e.message.text.ToLower() == "#r") {
+                                        //    var actions = new List<TemplateActionBase>();
+                                        //    actions.Add(new MessageActon() {
+                                        //        label = "Message",
+                                        //        text = "Text"
+                                        //    });
 
-                                            actions.Add(new UriActon() {
-                                                label = "Uri",
-                                                uri = new Uri("http://dev.tks.co.th/ChannelOne/Home/Register?refer=")
-                                            });
+                                        //    actions.Add(new UriActon() {
+                                        //        label = "Uri",
+                                        //        uri = new Uri("http://dev.tks.co.th/ChannelOne/Home/Register?refer=")
+                                        //    });
 
-                                            actions.Add(new PostbackActon() {
-                                                label = "postback",
-                                                data = "#r"
-                                            });
-                                            var C = new List<Column>();
-                                            C.Add(new Column() {
-                                                thumbnailImageUrl = new Uri("https://dev.tks.co.th/ChannelOne/Content/img/headTemplateTh.png"),
-                                                text = "กด “ลงทะเบียน” เพื่อไปหน้าลงทะเบียน",
-                                                actions = actions
-                                            });
-                                            C.Add(new Column() {
-                                                thumbnailImageUrl = new Uri("https://dev.tks.co.th/ChannelOne/Content/img/headTemplateEn.png"),
-                                                text = "Press “Register” to continue",
-                                                actions = actions
-                                            });
-                                            var carousel = new CarouselTemplate() {
-                                                altText = "กดลงทะเบียนรับการแจ้งเตือนเอกสารธุระกรรมผ่านช่องทางไลน์ ",
-                                                columns = C
-                                            };
-                                            Utility.PushTemplateMessage(user.userId, carousel, ChannelAccessToken);
-                                        } else {
+                                        //    actions.Add(new PostbackActon() {
+                                        //        label = "postback",
+                                        //        data = "#r"
+                                        //    });
+                                        //    var C = new List<Column>();
+                                        //    C.Add(new Column() {
+                                        //        thumbnailImageUrl = new Uri("https://dev.tks.co.th/ChannelOne/Content/img/headTemplateTh.png"),
+                                        //        text = "กด “ลงทะเบียน” เพื่อไปหน้าลงทะเบียน",
+                                        //        actions = actions
+                                        //    });
+                                        //    C.Add(new Column() {
+                                        //        thumbnailImageUrl = new Uri("https://dev.tks.co.th/ChannelOne/Content/img/headTemplateEn.png"),
+                                        //        text = "Press “Register” to continue",
+                                        //        actions = actions
+                                        //    });
+                                        //    var carousel = new CarouselTemplate() {
+                                        //        altText = "กดลงทะเบียนรับการแจ้งเตือนเอกสารธุระกรรมผ่านช่องทางไลน์ ",
+                                        //        columns = C
+                                        //    };
+                                        //    Utility.PushTemplateMessage(user.userId, carousel, ChannelAccessToken);
+                                        //} else {
                                             Message = "Bot : " + e.message.text;
                                             Utility.ReplyMessage(e.replyToken, Message, ChannelAccessToken);
-                                        }
+                                        //}
                                         break;
                                     default:
                                         Message = "ขอบคุณสำหรับข้อความ!􀄃􀄄blush􏿿\nขออภัย เราไม่สามารถตอบกลับผู้ใช้ เป็นส่วนตัวได้จากบัญชีนี้้􀄃􀄑hm􏿿";
